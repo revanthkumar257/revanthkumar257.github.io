@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Revanth Kumar — Data & AI Portfolio</title>
+<style>
+  :root{
+    --bg: #ffffff;
+    --card: #f6f7fb;
+    --text: #0f172a;
+    --muted: #55607a;
+    --accent-1: linear-gradient(90deg,#7c3aed,#06b6d4);
+  }
+  .dark{
+    --bg: #0b1220;
+    --card: #0f172a;
+    --text: #e6eef8;
+    --muted: #9aa8c0;
+    --accent-1: linear-gradient(90deg,#8b5cf6,#06b6d4);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+    background:var(--bg); color:var(--text); transition:background .35s,color .35s;
+  }
+  header{
+    position:relative; overflow:hidden;
+  }
+  .cover{
+    width:100%; height:360px; object-fit:cover; display:block;
+    filter: saturate(110%);
+  }
+  .hero{
+    position:absolute; left:0; right:0; top:0; bottom:0;
+    display:flex; flex-direction:column; justify-content:center; align-items:center;
+    text-align:center; padding:20px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.0));
+  }
+  .title{font-size:2.4rem; margin:0 0 6px; letter-spacing: -0.5px}
+  .tagline{margin:0; color:var(--muted); font-weight:500}
+
+  .container{max-width:980px;margin:28px auto;padding:0 20px;}
+  .card{background:var(--card); border-radius:12px; padding:18px; box-shadow: 0 6px 18px rgba(2,6,23,0.06)}
+  .row{display:flex;gap:16px;flex-wrap:wrap}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:10px; cursor:pointer; border:none;
+    background:var(--accent-1); color:white; font-weight:600; box-shadow:0 6px 18px rgba(12,15,30,0.12)
+  }
+  footer{padding:30px 0;text-align:center;color:var(--muted)}
+  @media (max-width:720px){
+    .title{font-size:1.6rem}
+    .cover{height:240px}
+  }
+</style>
+</head>
+<body>
+<header id="header">
+  <!-- cover image: place your uploaded images in assets/ -->
+  <picture>
+    <source srcset="assets/cover-dark.png" media="(prefers-color-scheme: dark)">
+    <img src="assets/cover-light.png" alt="cover" class="cover">
+  </picture>
+
+  <div class="hero">
+    <h1 class="title">Hi 👋, I'm Revanth Kumar Golagani</h1>
+    <p class="tagline">🚀 Data Science · Artificial Intelligence · Software Development</p>
+    <div style="margin-top:12px">
+      <button class="btn" id="themeToggle">🌗 Toggle Theme</button>
+      <a class="btn" href="https://github.com/revanthkumar257" style="text-decoration:none; margin-left:10px">🔗 GitHub</a>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <section class="card" style="margin-bottom:16px">
+    <h2 style="margin-top:0">About</h2>
+    <p style="color:var(--muted)">Data & AI enthusiast — building ML systems, RAG pipelines, and data products. Explore my projects and interactive portfolio.</p>
+  </section>
+
+  <section class="card">
+    <h3 style="margin-top:0">Featured Projects</h3>
+    <div class="row">
+      <a class="card" style="flex:1;min-width:220px;text-decoration:none;color:inherit" href="https://github.com/revanthkumar257/Agri-AI">
+        <strong>🌾 Agri-AI</strong><div style="color:var(--muted)">Plant disease detection (ResNet-like)</div>
+      </a>
+      <a class="card" style="flex:1;min-width:220px;text-decoration:none;color:inherit" href="https://github.com/revanthkumar257/Falcon-SQL-Generator">
+        <strong>🦅 Falcon SQL Generator</strong><div style="color:var(--muted)">Text → SQL (Falcon + LoRA)</div>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div style="max-width:980px;margin:0 auto;padding:0 20px">
+    <div style="margin-bottom:8px">📫 <a href="mailto:revanthyadavg05@gmail.com">revanthyadavg05@gmail.com</a> · <a href="https://linkedin.com/in/revanth-kumar-golagani">LinkedIn</a></div>
+    <div style="color:var(--muted)">Built with ❤️ · Theme saved in localStorage</div>
+  </div>
+</footer>
+
+<script>
+  // Theme toggle with persistence (localStorage)
+  (function(){
+    const body = document.documentElement;
+    const btn = document.getElementById('themeToggle');
+
+    // Set initial theme from localStorage or system
+    const saved = localStorage.getItem('site-theme');
+    if(saved === 'dark') body.classList.add('dark');
+    else if(saved === 'light') body.classList.remove('dark');
+    else {
+      // default follow system preference
+      if(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches){
+        body.classList.add('dark');
+      }
+    }
+
+    btn.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      const isDark = body.classList.contains('dark');
+      localStorage.setItem('site-theme', isDark ? 'dark' : 'light');
+      btn.textContent = isDark ? '🌙 Dark' : '🔆 Light';
+    });
+
+    // set initial button text
+    btn.textContent = document.documentElement.classList.contains('dark') ? '🌙 Dark' : '🔆 Light';
+  })();
+</script>
+</body>
+</html>
